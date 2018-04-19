@@ -45,18 +45,18 @@
             <scope>test</scope>
         </dependency>
 
-        <!--&lt;!&ndash; JPA data (Repositories, Entities, Hibernate, etc) &ndash;&gt;-->
+        <!-- JPA data (Repositories, Entities, Hibernate, etc) -->
 
-        <!--<dependency>-->
-            <!--<groupId>org.springframework.boot</groupId>-->
-            <!--<artifactId>spring-boot-starter-data-jpa</artifactId>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
 
-        <!--&lt;!&ndash; Use my SQL connector &ndash;&gt;-->
-        <!--<dependency>-->
-            <!--<groupId>mysql</groupId>-->
-            <!--<artifactId>mysql-connector-java</artifactId>-->
-        <!--</dependency>-->
+        <!-- Use my SQL connector -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
 
     </dependencies>
 
