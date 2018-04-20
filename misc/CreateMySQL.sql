@@ -1,3 +1,5 @@
+use database_name;
+
 -- Create table
 create table APP_USER
 (

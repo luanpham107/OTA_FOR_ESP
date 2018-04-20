@@ -37,8 +37,8 @@
 
 <h1>Enter your username and password</h1>
 <form action="#" th:action="@{/login}" th:object="${user}" method="post">
-    <p>Username: <input type="text" th:field="*{name}" /></p>
-    <p>Password: <input type="text" th:field="*{password}" /></p>
+    <p>Username: <input type="text" th:field="*{userName}" /></p>
+    <p>Password: <input type="text" th:field="*{encrytedPassword}" /></p>
     <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
 </form>
 <br/>
