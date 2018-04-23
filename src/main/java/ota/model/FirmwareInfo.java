@@ -1,4 +1,4 @@
-package ota;
+package ota.model;
 
 public class FirmwareInfo {
     private String name;
