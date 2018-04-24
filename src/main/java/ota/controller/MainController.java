@@ -1,4 +1,5 @@
 package ota.controller;
+
 import java.security.Principal;
 
 import ota.WebUtils;
@@ -8,11 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import ota.model.FirmwareInfo;
 
 @Controller
 public class MainController {
 
-    @RequestMapping(value = { "/", "/welcome" }, method = RequestMethod.GET)
+    @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcomePage(Model model) {
         model.addAttribute("title", "Welcome");
         model.addAttribute("message", "This is welcome page!");
@@ -78,6 +80,12 @@ public class MainController {
         }
 
         return "403Page";
+    }
+
+    @RequestMapping("/firmwareinfo")
+    public String firmwareInfoForm(Model model) {
+        model.addAttribute("firmwareinfo", new FirmwareInfo());
+        return "firmwareInfoPage";
     }
 
 }

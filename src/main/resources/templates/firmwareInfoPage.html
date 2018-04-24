@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<head>
+    <th:block th:include="include/_head"></th:block>
+    <title>Upload</title>
+
+</head>
+
+<body>
+
+<th:block th:include="include/_menu"></th:block>
+
+<th:block th:include="include/_navBar"></th:block>
+
+<br/>
+<br/>
+<h1>Enter your info for firmware version!</h1>
+<h1>Form</h1>
+<form action="#" th:action="@{/firmwareinfo}" th:object="${firmwareinfo}" method="post">
+    <p>Version: <input type="text" th:field="*{version}"/></p>
+    <p>Name: <input type="text" th:field="*{name}"/></p>
+    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
+</form>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<th:block th:include="include/_jscript"></th:block>
+
+</body>
+</html>

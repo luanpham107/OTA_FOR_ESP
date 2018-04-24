@@ -1,16 +1,3 @@
-<!doctype html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
-<head>
-    <th:block th:include="_head"></th:block>
-    <title>Upload</title>
-
-</head>
-
-<body>
-
-<th:block th:include="_menu"></th:block>
-
 <!-- Navigation -->
 <div class="container-fluid">
     <div class="row">
@@ -79,28 +66,3 @@
         </nav>
     </div>
 </div>
-
-<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Company name</a>
-    <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
-    <ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            <a class="nav-link" href="#">Sign out</a>
-        </li>
-    </ul>
-</nav>
-<br/>
-<br/>
-<h1>Enter your info for firmware version!</h1>
-<h1>Form</h1>
-<form action="#" th:action="@{/firmwareinfo}" th:object="${firmwareinfo}" method="post">
-    <p>Version: <input type="text" th:field="*{version}"/></p>
-    <p>Name: <input type="text" th:field="*{name}"/></p>
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
-</form>
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<th:block th:include="_jscript"></th:block>
-
-</body>
-</html>

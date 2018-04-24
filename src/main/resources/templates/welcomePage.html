@@ -1,17 +1,26 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <th:block th:include="/_head"></th:block>
+    <th:block th:include="include/_head"></th:block>
     <title th:utext="Welcome"></title>
 </head>
 
 
 <!-- Include _menu.html -->
-<th:block th:include="/_menu"></th:block>
+<th:block th:include="include/_menu"></th:block>
 
 <!--<th:center><a th:href="/login">Login</a></th:center>-->
+<div th:if="${#request.userPrincipal == null}">
+<a th:href="@{/login}">Login</a>
 <h2>Please login first!</h2>
+</div>
+
+<div style="margin-top:100px" th:if="${#request.userPrincipal != null}">
+
+    <th:block th:include="include/_navBar"></th:block>
+
+</div>
 <!--<h2>Message : <span th:utext="${message}"></span></h2>-->
-<th:block th:include="/_jscript"></th:block>
+<th:block th:include="include/_jscript"></th:block>
 </body>
 </html>
