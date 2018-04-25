@@ -7,21 +7,98 @@
 
 </head>
 
-<body>
+<body data-gr-c-s-loaded="true">
+<div class="container-fluid">
+    <div class="row">
+        <th:block th:include="include/_menu"></th:block>
+        <div style="margin-top:100px" th:if="${#request.userPrincipal != null}">
+            <th:block th:include="include/_navBar"></th:block>
+        </div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <div class="chartjs-size-monitor" style="position: absolute; left: 0px; top: 0px; right: 0px; bottom: 0px; overflow: hidden; pointer-events: none; visibility: hidden; z-index: -1;">
+                <div class="chartjs-size-monitor-expand" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                    <div style="position:absolute;width:1000000px;height:1000000px;left:0;top:0">
+                    </div>
+                </div>
+                <div class="chartjs-size-monitor-shrink" style="position:absolute;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1;">
+                    <div style="position:absolute;width:200%;height:200%;left:0; top:0">
 
-<th:block th:include="include/_menu"></th:block>
+                    </div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                <h1 class="h2">Dashboard</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <button class="btn btn-sm btn-outline-secondary">Share</button>
+                        <button class="btn btn-sm btn-outline-secondary">Export</button>
+                    </div>
+                    <button class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                        This week
+                    </button>
+                </div>
+            </div>
+            <!-- Main jumbotron for a primary marketing message or call to action -->
+            <div class="jumbotron">
+                <div class="container">
+                    <h2 class="display-4">Enter your info for firmware version!</h2>
+                    <p>Please select firmware type and select coresponding firmware file to be uploaded to your device.</p>
+                    <h4 class="mb-3">Type of new firmware</h4>
 
-<th:block th:include="include/_navBar"></th:block>
+                    <div class="d-block my-3">
+                        <div class="custom-control custom-radio">
+                            <input id="credit" name="paymentMethod" type="radio" class="custom-control-input" checked required>
+                            <label class="custom-control-label" for="credit">Release</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="debit" name="paymentMethod" type="radio" class="custom-control-input" required>
+                            <label class="custom-control-label" for="debit">Minnor</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input" required>
+                            <label class="custom-control-label" for="paypal">Bugfix</label>
+                        </div>
+                    </div>
+                    <form action="#" th:action="@{/firmwareinfo}" th:object="${firmwareinfo}" method="post">
+                        <p>Version: <input type="text" th:field="*{version}"/></p>
+                        <p>Name   : <input type="text" th:field="*{name}"/></p>
+                        <p><input class="btn btn-primary my-2" type="submit" value="Submit"/>
+                            <input class="btn btn-primary my-2" type="reset" value="Reset"/></p>
+                    </form>
+                </div>
+            </div>
+            <!--<canvas class="my-4 w-100 chartjs-render-monitor" id="myChart" width="1075" height="453" style="display: block; width: 1075px; height: 453px;"></canvas>-->
 
-<br/>
-<br/>
-<h1>Enter your info for firmware version!</h1>
-<h1>Form</h1>
-<form action="#" th:action="@{/firmwareinfo}" th:object="${firmwareinfo}" method="post">
-    <p>Version: <input type="text" th:field="*{version}"/></p>
-    <p>Name: <input type="text" th:field="*{name}"/></p>
-    <p><input type="submit" value="Submit"/> <input type="reset" value="Reset"/></p>
-</form>
+            <!-- Show all device -->
+            <div class="container">
+                <!-- Example row of columns -->
+                <div class="row">
+                    <div class="col-md-4">
+                        <h2>Living Room</h2>
+                        <p class="livingRoom1">ON/OFF Status: </p>
+                        <p class="livingRoom2">Curentversion: </p>
+                        <p class="livingRoom2">Firmware name: </p>
+                        <!-- <p><a class="btn btn-secondary" href="#" role="button">View details &raquo;</a></p> -->
+                    </div>
+                    <div class="col-md-4">
+                        <h2>Rest Room</h2>
+                        <p class="livingRoom1">ON/OFF Status: </p>
+                        <p class="livingRoom2">Curentversion: </p>
+                        <p class="livingRoom2">Firmware name: </p>
+                    </div>
+                    <div class="col-md-4">
+                        <h2>Kitchen</h2>
+                        <p class="livingRoom1">ON/OFF Status: </p>
+                        <p class="livingRoom2">Curentversion: </p>
+                        <p class="livingRoom2">Firmware name: </p>
+                    </div>
+                </div>
+
+        </main>
+    </div>
+</div>
+
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <th:block th:include="include/_jscript"></th:block>
