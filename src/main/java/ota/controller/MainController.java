@@ -82,10 +82,6 @@ public class MainController {
         return "403Page";
     }
 
-    @RequestMapping("/firmwareinfo")
-    public String firmwareInfoForm(Model model) {
-        model.addAttribute("firmwareinfo", new FirmwareInfo());
-        return "firmwareInfoPage";
-    }
+
 
 }
