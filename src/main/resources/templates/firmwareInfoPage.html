@@ -4,88 +4,99 @@
 <head>
     <th:block th:include="include/_head"></th:block>
     <title>Upload</title>
-    
 </head>
 
 <body data-gr-c-s-loaded="true">
-    <div class="container-fluid">
-        <div class="row">
-            <th:block th:include="include/_menu"></th:block>
-            <div style="margin-top:100px" th:if="${#request.userPrincipal != null}">
-                <th:block th:include="include/_navBar"></th:block>
-            </div>
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">                       
-                <!-- Main jumbotron for a primary marketing message or call to action -->
-                <div class="">
-                    <div class="container">
-                        <form th:action="@{/firmwareinfo}" th:object="${firmwareinfo}" method="post" enctype="multipart/form-data">
-                            <h4>Firmware form</h4>
-                            <div class="d-block my-3">
-                                <label for="country">Device</label>
-                                <select class="custom-select d-block w-100" id="device" required>
-                                    <option value="">Choose...</option>
-                                    <option>Living Room</option>
-                                    <option>Rest Room</option>
-                                    <option>Kitchen</option>
-                                </select>
-                                <div class="invalid-feedback">
-                                    Please select a valid device.
+<div class="container-fluid">
+    <div class="row">
+        <th:block th:include="include/_menu"></th:block>
+        <div style="margin-top:100px" th:if="${#request.userPrincipal != null}">
+            <th:block th:include="include/_navBar"></th:block>
+        </div>
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <!-- Main jumbotron for a primary marketing message or call to action -->
+            <div class="">
+                <div class="container">
+                    <form th:action="@{/firmwareinfo}" th:object="${firmwareinfo}" method="post"
+                          enctype="multipart/form-data">
+                        <h4>Firmware form</h4>
+                        <div class="d-block my-3">
+                            <label for="deviceChoose">Device</label>
+                            <select class="custom-select d-block w-100" id="deviceChoose" required>
+                                <option value="">Choose...</option>
+                                <option>Living Room</option>
+                                <option>Rest Room</option>
+                                <option>Kitchen</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                Please select a valid device.
+                            </div>
+                            <label for="currentVersion">Current Version: </label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">@</span>
                                 </div>
-                                <label for="currentVersion">Current Version: </label>
+                                <input id="currentVersion" type="text" class="form-control" th:field="*{version}"
+                                       required="" disabled>
+                            </div>
+                        </div>
+                        <hr class="mb-4">
+                        Type of new firmware</hr>
+
+                        <div class="d-block my-3" id="versionTypes" onchange="calcVersion('1.0.0')">
+                            <div class="custom-control custom-radio">
+                                <input id="release" name="versionType" type="radio" class="custom-control-input"
+                                       value="Release"
+                                       required>
+                                <label class="custom-control-label" for="release">Release</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="minor" name="versionType" type="radio" class="custom-control-input"
+                                       value="Minor"
+                                       required>
+                                <label class="custom-control-label" for="minor">Minor</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="bugfix" name="versionType" type="radio" class="custom-control-input"
+                                       value="Bugfix"
+                                       required>
+                                <label class="custom-control-label" for="bugfix">Bugfix</label>
+                            </div>
+                        </div>
+                        <div class="d-block my-3">
+                            <div class="mb-3">
+                                <label for="newVersion">New Version :</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                      <span class="input-group-text">@</span>
+                                        <span class="input-group-text">@</span>
                                     </div>
-                                    <input id="currentVersion" type="text" class="form-control" th:field="*{version}" required="" disabled>
-                                  </div>
-                        </div>
-                        <hr class="mb-4">Type of new firmware</hr>
+                                    <input id="newVersion" type="text" class="form-control" th:field="*{version}"
+                                           required="" disabled>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="comment">Comment</label>
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                    </div>
+                                    <input id="comment" type="text" class="form-control" th:field="*{name}" placeholder="Fix bug"
+                                           required="">
+                                    <div class="invalid-feedback" style="width: 100%;">
 
-                        <div class="d-block my-3">
-                            <div class="custom-control custom-radio">
-                                <input id="credit" name="paymentMethod" type="radio" class="custom-control-input"
-                                       checked required>
-                                <label class="custom-control-label" for="credit">Release</label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="custom-control custom-radio">
-                                <input id="debit" name="paymentMethod" type="radio" class="custom-control-input"
-                                       required>
-                                <label class="custom-control-label" for="debit">Minnor</label>
-                            </div>
-                            <div class="custom-control custom-radio">
-                                <input id="paypal" name="paymentMethod" type="radio" class="custom-control-input"
-                                       required>
-                                <label class="custom-control-label" for="paypal">Bugfix</label>
-                            </div>
-                        </div>
-                        <div class="d-block my-3">
-                                <div class="mb-3">
-                                    <label for="newVersion">New Version    :</label>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                          <span class="input-group-text">@</span>
-                                        </div>
-                                        <input id="newVersion" type="text" class="form-control" th:field="*{version}" required="" disabled>
-                                      </div>
-                                      </div>
-                                      <div class="mb-3">
-                                            <label for="comment">Comment</label>
-                                            <div class="input-group">
-                                              <div class="input-group-prepend">
-                                              </div>
-                                              <input type="text" class="form-control" th:field="*{name}" placeholder="Fix bug" required="">
-                                              <div class="invalid-feedback" style="width: 100%;">
-                                                
-                                              </div>
-                                            </div>
-                                        </div>  
-                                        <hr class="mb-4">File to upload:</hr>                                                    
-                                        <table>
-                                            <tr><td></td><td><input class="btn btn-primary my-2" type="file" name="file" required/></td></tr>
-                                        </table>
-                        <p><input class="btn btn-primary my-2" type="submit" value="Submit"/>
-                            <input class="btn btn-primary my-2" type="reset" value="Reset"/></p>
-                            <hr class="mb-4"></hr>                            
+                            <hr class="mb-4">
+                            File to upload:</hr>
+                            <table>
+                                <tr>
+                                    <td></td>
+                                    <td><input class="btn btn-primary my-2" type="file" name="file" required/></td>
+                                </tr>
+                            </table>
+                            <p><input class="btn btn-primary my-2" type="submit" value="Submit"/>
+                                <input class="btn btn-primary my-2" type="reset" value="Reset"/></p>
+                            <hr class="mb-4"></hr>
                         </div>
                     </form>
                 </div>
@@ -115,11 +126,44 @@
                         <p class="livingRoom2">Firmware name: </p>
                     </div>
                 </div>
+            </div>
 
         </main>
     </div>
 </div>
+<script type="text/javascript">
+    function calcVersion(myStr){
+        if(myStr.search(".") >= 0){
+            var versionType = document.getElementById('versionTypes').value;
+            var versionArray = myStr.split(".")
 
+            if(document.getElementById("release").checked){
+                versionType = document.getElementById('release').value;
+                versionArray[0]++;
+            }
+            if(document.getElementById("minor").checked){
+                versionType = document.getElementById('minor').value;
+                versionArray[1]++;
+            }
+            if(document.getElementById("bugfix").checked){
+                versionType = document.getElementById('bugfix').value;
+                versionArray[2]++;
+            }
+            document.getElementById('currentVersion').value =
+                versionArray[0] + "." + versionArray[1] + "." + versionArray[2] + " " + versionType;
+        }
+        else{
+            var versionArray = myStr.split(".")
+            document.getElementById('demo').innerHTML =
+                "Location of . is " + myStr.search(".")
+                +  versionArray[0] + ","
+                + versionArray[1]
+                + "," + versionArray[2]
+            ' else';
+        }
+
+    }
+</script>
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <th:block th:include="include/_jscript"></th:block>
