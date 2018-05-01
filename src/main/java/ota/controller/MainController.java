@@ -2,6 +2,7 @@ package ota.controller;
 
 import java.security.Principal;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import ota.WebUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
@@ -9,10 +10,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import ota.model.FirmwareInfo;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import ota.model.DeviceInfo;
+import ota.model.DeviceInfoRepository;
 
 @Controller
 public class MainController {
+
+    @Autowired
+    private DeviceInfoRepository deviceInfoRepository;
 
     @RequestMapping(value = {"/", "/welcome"}, method = RequestMethod.GET)
     public String welcomePage(Model model) {
@@ -80,6 +87,12 @@ public class MainController {
         }
 
         return "403Page";
+    }
+
+    @GetMapping(path="/all")
+    public @ResponseBody Iterable<DeviceInfo> getAllUsers() {
+        // This returns a JSON or XML with the users
+        return deviceInfoRepository.findAll();
     }
 
 

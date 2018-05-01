@@ -1,28 +1,28 @@
 package ota.model;
-
+import javax.persistence.*;
 import java.util.Date;
 
-public class FirmwareInfo {
+@Entity
+@Table(name= "device_info", schema = "db_user")
+
+public class DeviceInfo {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+
     private long id;
     private String name;
     private String version;
     private Date date;
     private String comment;
 
-    public FirmwareInfo(long id, String name, String version, Date date, String comment) {
-        this.id = id;
+    public DeviceInfo(String name, String version, Date date, String comment) {
         this.name = name;
         this.version = version;
         this.date = date;
         this.comment = comment;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
+    public DeviceInfo() {
     }
 
     public void setName(String name) {
@@ -41,6 +41,14 @@ public class FirmwareInfo {
         return version;
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public Date getDate() {
         return date;
     }
@@ -56,6 +64,4 @@ public class FirmwareInfo {
     public void setComment(String comment) {
         this.comment = comment;
     }
-
-
 }

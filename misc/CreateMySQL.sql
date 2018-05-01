@@ -91,11 +91,21 @@ values (2, 1, 2);
 insert into user_role (ID, USER_ID, ROLE_ID)
 values (3, 2, 2);
 
- create table DEVICE_INFO
- (
-  DEVICE_ID           BIGINT not null,
-  DEVICE_NAME         VARCHAR(36) not null,
-  DEVICE_FW_VERSION   VARCHAR(36) not null,
-  DEVICE_DATE         TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  DEVICE_COMMENT      VARCHAR(128) not null
+--
+
+create table DEVICE_INFO
+(
+  ID           BIGINT not null,
+  NAME         VARCHAR(36) not null,
+  VERSION    VARCHAR(36) not null,
+  DATE         TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  COMMENT      VARCHAR(128) not null
  );
+
+insert into DEVICE_INFO (ID, NAME, VERSION, COMMENT)
+values (1, 'LivingRoom', '1.0.0','Release');
+
+insert into DEVICE_INFO (ID, NAME, VERSION, COMMENT)
+values (2, 'Kitchen', '1.0.1', 'fix bug');
+
+Select d.Id, d.Name, d.VERSION, d.date, d.comment From DEVICE_INFO d
