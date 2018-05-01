@@ -90,3 +90,12 @@ values (2, 1, 2);
 
 insert into user_role (ID, USER_ID, ROLE_ID)
 values (3, 2, 2);
+
+ create table DEVICE_INFO
+ (
+  DEVICE_ID           BIGINT not null,
+  DEVICE_NAME         VARCHAR(36) not null,
+  DEVICE_FW_VERSION   VARCHAR(36) not null,
+  DEVICE_DATE         TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  DEVICE_COMMENT      VARCHAR(128) not null
+ );
