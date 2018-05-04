@@ -1,8 +1,6 @@
 package ota.controller;
 
 import java.security.Principal;
-import java.util.Date;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -11,14 +9,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import ota.dao.DeviceInfoDAO;
 import ota.model.DeviceInfo;
-import ota.model.DeviceInfoMapper;
 import ota.model.DeviceInfoRepository;
-import ota.model.DeviceInfoService;
-import sun.plugin2.message.Message;
-
-import javax.sql.DataSource;
 
 @Controller
 public class MainController {
