@@ -20,13 +20,14 @@
                     <form th:action="@{/firmwareinfo}" th:object="${firmwareinfo}" method="post"
                           enctype="multipart/form-data">
                         <h4>Firmware form</h4>
+                        <p id="demo">Your query result here</p>                        
                         <div class="d-block my-3">
                             <label for="deviceChoose">Device</label>
-                            <select class="custom-select d-block w-100" id="deviceChoose" required>
-                                <option value="">Choose...</option>
-                                <option>Living Room</option>
-                                <option>Rest Room</option>
-                                <option>Kitchen</option>
+                            <select class="custom-select d-block w-100" id="deviceChoose" required onchange="deviceFind()">
+                                <option value="empty">Choose...</option>
+                                <option value="livingRoom">Living Room</option>
+                                <option value="restRoom">Rest Room</option>
+                                <option value="kitchen">Kitchen</option>
                             </select>
                             <div class="invalid-feedback">
                                 Please select a valid device.
@@ -43,7 +44,7 @@
                         <hr class="mb-4">
                         Type of new firmware</hr>
 
-                        <div class="d-block my-3" id="versionTypes" onchange="calcVersion('1.0.0')">
+                        <div class="d-block my-3" id="versionTypes" onchange="calcVersion()">
                             <div class="custom-control custom-radio">
                                 <input id="release" name="versionType" type="radio" class="custom-control-input"
                                        value="Release"
@@ -132,7 +133,8 @@
     </div>
 </div>
 <script type="text/javascript">
-    function calcVersion(myStr){
+    function calcVersion(){
+        var myStr = document.getElementById("currentVersion").value;
         if(myStr.search(".") >= 0){
             var versionType = document.getElementById('versionTypes').value;
             var versionArray = myStr.split(".")
@@ -149,12 +151,12 @@
                 versionType = document.getElementById('bugfix').value;
                 versionArray[2]++;
             }
-            document.getElementById('currentVersion').value =
+            document.getElementById('newVersion').value =
                 versionArray[0] + "." + versionArray[1] + "." + versionArray[2] + " " + versionType;
         }
         else{
             var versionArray = myStr.split(".")
-            document.getElementById('demo').innerHTML =
+            document.getElementById('currentVersion').innerHTML =
                 "Location of . is " + myStr.search(".")
                 +  versionArray[0] + ","
                 + versionArray[1]
@@ -162,6 +164,32 @@
             ' else';
         }
 
+    }
+</script>
+
+<script th:inline="javascript">
+    function deviceFind() {
+        var deviceList = [[${messages}]];
+        for(var i = 0; i < deviceList.length; i++){
+            if(document.getElementById("deviceChoose").value == "empty") {
+                document.getElementById("currentVersion").value = "Please select a device."
+                break;
+            }
+
+            if(document.getElementById("deviceChoose").value == "livingRoom") {
+                document.getElementById("currentVersion").value = deviceList[0].version;
+                break;
+            }
+            if(document.getElementById("deviceChoose").value == "restRoom") {
+                document.getElementById("currentVersion").value = deviceList[1].version;
+                break;
+            }
+            if(document.getElementById("deviceChoose").value == "kitchen") {
+                document.getElementById("currentVersion").value = deviceList[2].version;
+                break;
+            }
+        }
+        document.getElementById("demo").innerHTML = temp;
     }
 </script>
 <!-- Optional JavaScript -->

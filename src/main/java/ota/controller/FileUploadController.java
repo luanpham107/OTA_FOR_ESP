@@ -14,12 +14,16 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import ota.model.DeviceInfo;
 
+import ota.model.DeviceInfoRepository;
 import ota.storage.StorageFileNotFoundException;
 import ota.storage.StorageService;
 
 @Controller
 public class FileUploadController {
     private final StorageService storageService;
+
+    @Autowired
+    private DeviceInfoRepository deviceInfoRepository;
 
     @Autowired
     public FileUploadController(StorageService storageService){
@@ -29,6 +33,7 @@ public class FileUploadController {
     @GetMapping("/firmwareinfo")
     public String firmwareInfoForm(Model model) {
         model.addAttribute("firmwareinfo", new DeviceInfo());
+        model.addAttribute("messages", deviceInfoRepository.findAll());
         return "firmwareInfoPage";
     }
 

@@ -15,7 +15,8 @@ public class DeviceInfo {
     private Date date;
     private String comment;
 
-    public DeviceInfo(String name, String version, Date date, String comment) {
+    public DeviceInfo(long id, String name, String version, Date date, String comment) {
+        this.id = id;
         this.name = name;
         this.version = version;
         this.date = date;

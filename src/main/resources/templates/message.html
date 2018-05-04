@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Device List</title>
+</head>
+<br>
+<body onload="deviceFind()">
+<button>Find Livingroom</button>
+</br>
+<p id="demo"></p>
+
+    <!--<tr th:each="message : ${messages}">-->
+    <!--<td th:text="${messages[0].id}">1</td>-->
+    <!--<td><a href="#" th:text="${messages[0].id}">Title ...</a></td>-->
+    <!--<td th:text="${messages[0].name}">Text ...</td>-->
+<!--</tr>-->
+
+<script th:inline="javascript">
+    function deviceFind() {
+        var deviceList = [[${messages}]];
+        for(var i = 0; i < deviceList.length; i++){
+            if(deviceList[i].name == "LivingRoom"){
+                temp = "Found " + deviceList[i].name + " with id = " + deviceList[i].id +" version " + deviceList[i].version;
+                break;
+            }
+            else{
+                temp = "Not found";
+            }
+        }
+        document.getElementById("demo").innerHTML = temp;
+    }
+</script>
+</body>
+</html>

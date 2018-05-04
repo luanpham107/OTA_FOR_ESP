@@ -1,19 +1,24 @@
 package ota.controller;
 
 import java.security.Principal;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 import ota.WebUtils;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import ota.dao.DeviceInfoDAO;
 import ota.model.DeviceInfo;
+import ota.model.DeviceInfoMapper;
 import ota.model.DeviceInfoRepository;
+import ota.model.DeviceInfoService;
+import sun.plugin2.message.Message;
+
+import javax.sql.DataSource;
 
 @Controller
 public class MainController {
@@ -95,6 +100,9 @@ public class MainController {
         return deviceInfoRepository.findAll();
     }
 
-
-
+    @GetMapping("/test")
+    public String messages(Model model) {
+        model.addAttribute("messages", deviceInfoRepository.findAll());
+        return "message";
+    }
 }
